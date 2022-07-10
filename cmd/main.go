@@ -12,7 +12,7 @@ var(
 	dynaClient dynamodbiface.DynamoDBAPI
 )
 
-const tableName = "LambdaInGoUser"
+const tableName = "Go-Cloud-Project"
 
 
 func main() {
@@ -21,7 +21,7 @@ func main() {
 	if err != nil {
 		return
 	}
-	
+
 	lambda.Start(handler)
 }
 
