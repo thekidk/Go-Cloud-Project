@@ -116,7 +116,7 @@ func UpdateUser(req events.APIGatewayProxyRequest, tableName string, dynaClient 
 	}
 
 	currentUser, _ := FetchUser(user.Email, tableName, dynaClient)
-	if currentUser != nil && len(currentUser.Email) != 0 {
+	if currentUser != nil && len(currentUser.Email) == 0 {
 		return nil, errors.New(ErrorUserDoesNotExist)
 	}
 

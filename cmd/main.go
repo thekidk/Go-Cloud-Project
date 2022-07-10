@@ -1,10 +1,14 @@
 package main
 
 import (
+	"os"
+
 	"github.com/aws/aws-lambda-go/events"
 	"github.com/aws/aws-lambda-go/lambda"
+	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/session"
+	"github.com/aws/aws-sdk-go/service/dynamodb"
 	"github.com/aws/aws-sdk-go/service/dynamodb/dynamodbiface"
-	"github.com/thekidk/Go-Cloud-Project/config"
 	"github.com/thekidk/Go-Cloud-Project/pkg/handlers"
 )
 
@@ -17,7 +21,14 @@ const tableName = "Go-Cloud-Project"
 
 func main() {
 
-	err := config.AwsConfig(dynaClient)
+	region := os.Getenv("AWS_REGION")
+	awsSession, err := session.NewSession(&aws.Config{
+		Region: aws.String(region)},)
+
+	if err!=nil{
+		return
+	}
+	dynaClient = dynamodb.New(awsSession)
 	if err != nil {
 		return
 	}
