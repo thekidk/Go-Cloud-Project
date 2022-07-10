@@ -3,7 +3,6 @@ package handlers
 import (
 	"github.com/aws/aws-lambda-go/events"
 	"encoding/json"
-	"github.com/aws/aws-lambda-go/events"
 )
 
 
